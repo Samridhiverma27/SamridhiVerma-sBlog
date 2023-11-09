@@ -6,7 +6,9 @@ categories: [flights, code, analysis]
 image: "image.jpg"
 ---
 
-In this blog post, we will understand stock price data using the "all_stocks_5yr.csv" dataset. This dataset encompasses historical stock prices for various companies over a 5-year period. Our aim is to explore the insights and patterns in stock prices, making it a valuable experience for those who want to delve into stock market data.
+In this blog post, we will understand stock price data using the "all_stocks_5yr.csv" dataset. This dataset encompasses historical stock prices for various companies over a 5-year period. Our aim is to explore the insights and patterns in stock prices, making it a valuable experience for those who want to delve into stock market data. The source of the data is from Kaggle and Cam Nugent is the owner the of the dataset.
+
+https://www.kaggle.com/datasets/camnugent/sandp500
 
 ```{r}
 library(readr)
@@ -27,7 +29,7 @@ str(sp500_data)
 summary(sp500_data)
 ```
 
-Before we proceed further on to visualizations, I am curious as to what are the names of all these s&p 500 companies or in technical terms what are some company Fund tickers.
+Before we proceed further on to visualizations, I am curious as to what are the names of all these S&P 500 companies or in technical terms what are some company Fund tickers.
 
 ```{r}
 unique_names <- unique(sp500_data$Name)
@@ -44,7 +46,7 @@ missing_data <- sp500_data[is.na(sp500_data$close), c("date", "Name", "close")]
 sp500_data <- sp500_data[!is.na(sp500_data$close),]
 ```
 
-Now since the data is cleared, lets make visualisations to understand stock trends of my favourite company Apple. Apples ticker is AAPL and we hope to analyse it trend for all the years present in the dataset.
+Now since the data is cleared, lets make visualizations to understand stock trends of my favorite company Apple. Apples ticker is AAPL and we hope to analyse it trend for all the years present in the dataset.
 
 ```{r}
 aapl_data <- sp500_data %>%

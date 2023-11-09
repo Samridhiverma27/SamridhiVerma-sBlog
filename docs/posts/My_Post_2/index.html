@@ -182,7 +182,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>In this blog post, we will understand stock price data using the “all_stocks_5yr.csv” dataset. This dataset encompasses historical stock prices for various companies over a 5-year period. Our aim is to explore the insights and patterns in stock prices, making it a valuable experience for those who want to delve into stock market data.</p>
+<p>In this blog post, we will understand stock price data using the “all_stocks_5yr.csv” dataset. This dataset encompasses historical stock prices for various companies over a 5-year period. Our aim is to explore the insights and patterns in stock prices, making it a valuable experience for those who want to delve into stock market data. The source of the data is from Kaggle and Cam Nugent is the owner the of the dataset.</p>
+<p>https://www.kaggle.com/datasets/camnugent/sandp500</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -275,7 +276,7 @@ date (1): date
                                                          </code></pre>
 </div>
 </div>
-<p>Before we proceed further on to visualizations, I am curious as to what are the names of all these s&amp;p 500 companies or in technical terms what are some company Fund tickers.</p>
+<p>Before we proceed further on to visualizations, I am curious as to what are the names of all these S&amp;P 500 companies or in technical terms what are some company Fund tickers.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>unique_names <span class="ot">&lt;-</span> <span class="fu">unique</span>(sp500_data<span class="sc">$</span>Name)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(unique_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -346,7 +347,7 @@ date (1): date
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with missing data in the 'close' column</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>sp500_data <span class="ot">&lt;-</span> sp500_data[<span class="sc">!</span><span class="fu">is.na</span>(sp500_data<span class="sc">$</span>close),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now since the data is cleared, lets make visualisations to understand stock trends of my favourite company Apple. Apples ticker is AAPL and we hope to analyse it trend for all the years present in the dataset.</p>
+<p>Now since the data is cleared, lets make visualizations to understand stock trends of my favorite company Apple. Apples ticker is AAPL and we hope to analyse it trend for all the years present in the dataset.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>aapl_data <span class="ot">&lt;-</span> sp500_data <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Name <span class="sc">==</span> <span class="st">"AAPL"</span>)</span>
