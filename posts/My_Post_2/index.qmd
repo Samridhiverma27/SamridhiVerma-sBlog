@@ -10,6 +10,7 @@ In this blog post, we will understand stock price data using the "all_stocks_5yr
 
 ```{r}
 library(readr)
+library(dplyr)
 library(ggplot2)
 
 # Load the S&P 500 stock price dataset
@@ -17,7 +18,7 @@ sp500_data <- read_csv("all_stocks_5yr.csv")
 head(sp500_data)
 ```
 
-Now that we have loaded the dataset, let's explore its structure and get a sense of what it contains.
+Now that we have loaded the dataset, let's explore its structure and get a sense of what it contains. Let us explore the summary of this dataset below.
 
 ```{r}
 str(sp500_data)
@@ -26,14 +27,14 @@ str(sp500_data)
 summary(sp500_data)
 ```
 
-Before we proceed further on to visualizations, I am curious as to what are the names of all these s&p 500 companies
+Before we proceed further on to visualizations, I am curious as to what are the names of all these s&p 500 companies or in technical terms what are some company Fund tickers.
 
 ```{r}
 unique_names <- unique(sp500_data$Name)
 print(unique_names)
 ```
 
-Handling missing data by removing rows with N/A' values in them.
+Now, let us look at handling missing data by removing rows with N/A' values in them.
 
 ```{r}
 
@@ -61,9 +62,9 @@ ggplot(aapl_data, aes(x = date, y = close, group = 1)) +
   theme_minimal()
 ```
 
-We can see that While Apple stock is on an upward trajectory overall, their shares plunged from 2015 - 2016 and then recovered eventually.
+We can see that While Apple stock is on an upward trajectory overall, their shares plunged from 2015 - 2016 and then recovered eventually. After 2017 there seems a more consistent growth and finally it stablizes.
 
-Similarly, lets look at Microsoft stock trends.
+Similarly, lets look at Microsoft stock trends, which is also another big name in the industry
 
 ```{r}
 library(dplyr)
