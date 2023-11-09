@@ -1,0 +1,86 @@
+---
+title: "Samridhi Verma Post #2"
+author: "Samridhi Verma"
+date: "2023-11-07"
+categories: [flights, code, analysis]
+image: "image.jpg"
+---
+
+In this blog post, we will understand stock price data using the "all_stocks_5yr.csv" dataset. This dataset encompasses historical stock prices for various companies over a 5-year period. Our aim is to explore the insights and patterns in stock prices, making it a valuable experience for those who want to delve into stock market data.
+
+```{r}
+library(readr)
+library(ggplot2)
+
+# Load the S&P 500 stock price dataset
+sp500_data <- read_csv("all_stocks_5yr.csv")
+head(sp500_data)
+```
+
+Now that we have loaded the dataset, let's explore its structure and get a sense of what it contains.
+
+```{r}
+str(sp500_data)
+
+# Summary statistics of the dataset
+summary(sp500_data)
+```
+
+Before we proceed further on to visualizations, I am curious as to what are the names of all these s&p 500 companies
+
+```{r}
+unique_names <- unique(sp500_data$Name)
+print(unique_names)
+```
+
+Handling missing data by removing rows with N/A' values in them.
+
+```{r}
+missing_data <- sp500_data %>%
+  select(date, Name, close) %>%
+  filter(is.na(close))
+
+# Remove rows with missing data in the 'close' column
+sp500_data <- sp500_data %>%
+  filter(!is.na(close))
+```
+
+Now since the data is cleared, lets make visualisations to understand stock trends of my favourite company Apple. Apples ticker is AAPL and we hope to analyse it trend for all the years present in the dataset.
+
+```{r}
+# Line plot of stock prices for a specific company (e.g., Apple Inc.)
+sp500_data %>%
+  filter(Name == "AAPL") %>%
+  ggplot(aes(x = date, y = close)) +
+  geom_line() +
+  labs(title = "Apple Inc. Stock Prices Over Time",
+       x = "Date",
+       y = "Stock Price")
+```
+
+We can see that While Apple stock is on an upward trajectory overall, their shares plunged from 2015 - 2016 and then recovered eventually.
+
+Similarly, lets look at Microsoft stock trends.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+# Filter the data for Microsoft (MSFT)
+msft_data <- sp500_data %>%
+  filter(Name == "MSFT")
+
+# Create a line plot for Microsoft stock
+msft_plot <- ggplot(msft_data, aes(x = date, y = close)) +
+  geom_line() +
+  labs(title = "Microsoft Corp. Stock Prices Over Time",
+       x = "Date",
+       y = "Stock Price")
+
+# Display the plot
+msft_plot
+```
+
+Microsoft stock has seen a similar trajectory, It has just been on an upward journey but faced a little plunge around 2015.
+
+Both of these graphs show us how tech giants like AAPL and MSFT have grown over years and their stock prices have gone up significantly.

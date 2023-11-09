@@ -1,0 +1,64 @@
+---
+title: "Samridhi Verma Post #1"
+author: "Samridhi Verma"
+date: "2023-11-07"
+categories: [Covid, cases, data analysis]
+image: "image.jpg"
+---
+
+The source of the COVID-19 dataset used in this analysis is the "Our World in Data" project. The dataset can be accessed via the following URL:
+
+<https://covid.ourworldindata.org/data/owid-covid-data.csv>
+
+This dataset is frequently updated and offers a wide range of information on COVID-19 cases, vaccinations, and more. Let's get started!
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+covid_data <- read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+head(covid_data)
+```
+
+We've loaded our COVID-19 dataset and this dataset contains information about COVID-19 cases, vaccinations, and more. Let's take a quick look at the data to understand its structure. There are multiple different columns for instance the country, region, total number of deaths, number of vaccinated people, etc. This dataset possibly has everything everything we need to know and to analyze any COVID trends.
+
+Before proceeding with our analysis, it's crucial to clean the data by removing any missing or inconsistent values. Let's start by checking for missing data and dealing with it.
+
+```{r}
+## data cleaning
+missing_data <- covid_data %>% select(date, location, total_cases) %>%
+  filter(is.na(total_cases))
+
+# Remove rows with missing data
+covid_data <- covid_data %>% filter(!is.na(total_cases))
+```
+
+We have identified and removed rows with missing data to ensure the dataset is clean for analysis. Now, let's create some visualizations to better understand the COVID-19 cases. We'll start with a line plot to visualize the total cases over time.
+
+```{r}
+covid_data %>%
+  filter(location == "World") %>%
+  ggplot(aes(x = date, y = total_cases)) +
+  geom_line() +
+  labs(title = "COVID-19 Total Cases Over Time",
+       x = "Date",
+       y = "Total Cases")
+```
+
+As you can observe above, this line plot depicts the total number of cases in the world since 2020 and it has been increasing over time until 2023. The high peak we see is in the year 2021 which was also first the peak COVID year. And ever since then it has been in the upward trend. Additionally, since the numbers were really big hence we are seeing them in the logarithmic form so as to keep it concise. The plot is pretty intuitive and gives a good glimpse of COVID trend during the pandemic years.
+
+```{r}
+covid_data %>%
+  filter(date == max(date)) %>%
+  arrange(desc(people_fully_vaccinated_per_hundred)) %>%
+  head(10) %>%
+  ggplot(aes(x = location, y = people_fully_vaccinated_per_hundred)) +
+  geom_bar(stat = "identity", fill = "dodgerblue") +
+  coord_flip() +
+  labs(title = "Top 10 Countries by Fully Vaccinated Percentage",
+       x = "Country",
+       y = "Fully Vaccinated (%)")
+```
+
+This visualization here is a bar depicting the countries against the percentage of population vaccinated. For instance, we can see that Peru had most of its population vaccinated and India had the least amount of its population vaccinated. This is a good chart to understand whether a country's number of COVID cases correlated with their vaccination numbers or not. Additionally, it also provides a good idea of how well a country is doing in terms of providing healthcare services. However, one thing to note here is that these numbers/metrics can be a little deceiving as the size of India's population is way larger than Italy, Peru etc. So, ideally we cannot really compare their progress but it is a visualization to understand.

@@ -1,0 +1,16 @@
+---
+title: "About me"
+image: "download.jpeg"
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/samridhiverma
+    - icon: github
+      text: Github
+      href: https://github.com/Samridhiverma
+---
+
+Hi, Welcome to my blog!\
+My name is Samridhi Verma and I'm orignally from Chandigarh, India. I am a junior and I am currently majoring in IS + DS. I'm passionate about the world of data science and interned as Data Science Intern at Morningstar this summer. Outside of work, I love going to the gym, travelling and trying out different coffee shops.
