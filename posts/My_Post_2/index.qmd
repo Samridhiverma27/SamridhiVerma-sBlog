@@ -64,7 +64,7 @@ ggplot(aapl_data, aes(x = date, y = close, group = 1)) +
 
 We can see that While Apple stock is on an upward trajectory overall, their shares plunged from 2015 - 2016 and then recovered eventually. After 2017 there seems a more consistent growth and finally it stablizes.
 
-Similarly, lets look at Microsoft stock trends, which is also another big name in the industry
+Similarly, lets look at Microsoft stock trends, which is also another big name in the industry.
 
 ```{r}
 library(dplyr)
